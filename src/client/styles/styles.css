@@ -1,0 +1,6 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #4DA0B0;
+  background: -webkit-linear-gradient(to left, #4DA0B0 , #D39D38);
+  background: linear-gradient(to left, #4DA0B0 , #D39D38);
+}
