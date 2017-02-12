@@ -1,9 +1,17 @@
 import express from 'express';
 import path from 'path';
 import { sampleRoute } from './routes/sampleRoutes';
+import webpack from 'webpack';
+import config from '../../webpack.config';
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 3000;
+
+const compiler = webpack(config);
+app.use(require('webpack-dev-middleware')(compiler, {
+  path: config.output.path
+}));
+app.use(require('webpack-hot-middleware')(compiler));
 
 app.disable('x-powered-by');
 app.use(express.static(path.join(__dirname, '../client')));

@@ -4,10 +4,9 @@
   "description": "react boilerplate",
   "main": "app.js",
   "scripts": {
-    "start": "npm run prod:buildserver; npm run webpack & node ./src/server-dist/app.js",
+    "start": "npm run prod:buildserver; node ./src/server-dist/app.js",
     "prod:buildserver": "babel ./src/server -d ./src/server-dist --presets es2015 --copy-files",
-    "dev:start": "npm run webpack & nodemon ./src/server/app.js --exec babel-node --presets es2015",
-    "webpack": "./node_modules/.bin/webpack -d --watch",
+    "dev:start": "nodemon ./src/server/app.js --exec babel-node --presets es2015",
     "test": "./node_modules/mocha/bin/mocha ./src/server-dist/test"
   },
   "repository": {
@@ -38,9 +37,12 @@
     "css-loader": "^0.26.1",
     "file-loader": "^0.10.0",
     "mocha": "^3.2.0",
+    "react-hot-loader": "^1.3.1",
     "style-loader": "^0.13.1",
     "supertest": "^3.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-hot-middleware": "^2.16.1"
   }
 }
