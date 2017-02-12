@@ -8,17 +8,15 @@ const PATHS = {
 };
 
 const config = {
-  entry: [PATHS.src, PATHS.cssSrc],
+  devtool: 'cheap-module-eval-source-map',
+  entry: [PATHS.src, PATHS.cssSrc, 'webpack-hot-middleware/client'],
   output: { path: PATHS.compiled, filename: 'app.bundle.js' },
   module: {
     loaders: [
       {
         test: /.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loaders: ['react-hot-loader', 'babel-loader?presets[]=es2015,presets[]=react'],
+        exclude: /node_modules/
       },
       { 
         test: /\.css$/, 
@@ -32,7 +30,15 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.css']
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'MAPS_KEY': JSON.stringify(process.env.MAPS_KEY)
+      }
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
 
 module.exports = config;
