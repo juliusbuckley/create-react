@@ -34,7 +34,7 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'MAPS_KEY': JSON.stringify(process.env.MAPS_KEY)
+        'ENV_VAR': JSON.stringify(process.env.ENV_VAR)
       }
     }),
     new webpack.HotModuleReplacementPlugin()
